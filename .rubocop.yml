@@ -10,3 +10,6 @@ Naming/VariableNumber:
 
 RSpec/VerifiedDoubles:
   Enabled: true
+
+AllCops:
+  SuggestExtensions: false
