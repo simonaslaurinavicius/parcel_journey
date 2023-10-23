@@ -33,9 +33,8 @@ RSpec.describe Parcel do
         let(:new_status) { transition.last }
 
         it 'does not update status' do
-          subject
-
           # Insert your code here
+          subject
 
           expect(parcel.status).to eq(expected_status)
         end
