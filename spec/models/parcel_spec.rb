@@ -4,7 +4,7 @@ RSpec.describe Parcel do
   describe '#update_status' do
     subject { parcel.update_status(new_status) }
 
-    let(:parcel) { described_class.create(status: old_status) }
+    let(:parcel) { Parcel.create(status: old_status) }
 
     # Reduce duplication by using table tests
     context 'with transition from pre_shipped to in_transit' do
