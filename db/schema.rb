@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_183945) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "recipient_id", null: false
     t.integer "sender_id", null: false
+    t.integer "recipient_id", null: false
     t.index ["recipient_id"], name: "index_parcels_on_recipient_id"
     t.index ["sender_id"], name: "index_parcels_on_sender_id"
   end
