@@ -11,10 +11,21 @@ RSpec.describe Parcel do
       let(:old_status) { 'pre_shipped' }
       let(:new_status) { 'in_transit' }
 
-      it 'does not update status' do
+      it 'updates status' do
         subject
 
-        expect(parcel.status).to eq(old_status)
+        expect(parcel.status).to eq(new_status)
+      end
+    end
+
+    context 'with transition from in_transit to completed' do
+      let(:old_status) { 'in_transit' }
+      let(:new_status) { 'completed' }
+
+      it 'updates status' do
+        subject
+
+        expect(parcel.status).to eq(new_status)
       end
     end
 
