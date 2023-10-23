@@ -1,3 +1,3 @@
-RSpec.describe Parcel, type: :model do
+RSpec.describe Parcel do
   pending "add some examples to (or delete) #{__FILE__}"
 end
