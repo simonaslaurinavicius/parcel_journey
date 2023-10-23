@@ -1,5 +1,5 @@
-source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+source 'https://nexus.vinted.net/repository/rubygems-proxy-repos-group/'
+private_gem_source = 'https://nexus.vinted.net/repository/rubygems-cloudsmith-repos-group/'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
