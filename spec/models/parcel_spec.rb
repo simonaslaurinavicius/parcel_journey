@@ -6,59 +6,39 @@ RSpec.describe Parcel do
 
     let(:parcel) { described_class.create(status: old_status) }
 
-    # Reduce duplication by using table tests
-    context 'with transition from pre_shipped to in_transit' do
-      let(:old_status) { 'pre_shipped' }
-      let(:new_status) { 'in_transit' }
+    {
+      %w(pre_shipped in_transit) => 'in_transit',
+      %w(in_transit completed) => 'completed',
+    }.each do |transition, _expected_status|
+      context "with valid transition from #{transition.first} to #{transition.last}" do
+        let(:old_status) { transition.first }
+        let(:new_status) { transition.last }
 
-      it 'does not update status' do
-        subject
+        it 'updates status' do
+          subject
 
-        expect(parcel.status).to eq(old_status)
+          expect(parcel.status).to eq(new_status)
+        end
       end
     end
 
-    context 'with transition from pre_shipped to completed' do
-      let(:old_status) { 'pre_shipped' }
-      let(:new_status) { 'completed' }
+    {
+      %w(pre_shipped completed) => 'pre_shipped',
+      %w(completed in_transit) => 'completed',
+      %w(completed pre_shipped) => 'completed',
+      %w(in_transit pre_shipped) => 'in_transit',
+    }.each do |transition, expected_status|
+      context "with invalid transition from #{transition.first} to #{transition.last}" do
+        let(:old_status) { transition.first }
+        let(:new_status) { transition.last }
 
-      it 'does not update status' do
-        subject.update_status(new_status)
+        it 'does not update status' do
+          subject
 
-        expect(subject.status).to eq(old_status)
-      end
-    end
+          # Insert your code here
 
-    context 'with transition from completed to in_transit' do
-      let(:old_status) { 'completed' }
-      let(:new_status) { 'in_transit' }
-
-      it 'does not update status' do
-        subject.update_status(new_status)
-
-        expect(subject.status).to eq(old_status)
-      end
-    end
-
-    context 'with transition from completed to pre_shipped' do
-      let(:old_status) { 'completed' }
-      let(:new_status) { 'pre_shipped' }
-
-      it 'does not update status' do
-        subject.update_status(new_status)
-
-        expect(subject.status).to eq(old_status)
-      end
-    end
-
-    context 'with transition from in_transit to pre_shipped' do
-      let(:old_status) { 'in_transit' }
-      let(:new_status) { 'pre_shipped' }
-
-      it 'does not update status' do
-        subject.update_status(new_status)
-
-        expect(subject.status).to eq(old_status)
+          expect(parcel.status).to eq(expected_status)
+        end
       end
     end
   end
