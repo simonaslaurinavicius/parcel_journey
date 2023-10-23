@@ -15,7 +15,11 @@ class Parcel < ApplicationRecord
   def update_status(new_status)
     return if status == new_status
 
-    update!(status: new_status) if supported_transition?(status, new_status)
+    if supported_transition?(status, new_status)
+      update!(status: new_status)
+    else
+      Rails.logger.error("Illegal transition from #{status} to #{new_status}!")
+    end
   end
 
   private
