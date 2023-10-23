@@ -1,0 +1,12 @@
+inherit_gem:
+  rubocop-vinted:
+    - .rubocop.default.yml
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: true
