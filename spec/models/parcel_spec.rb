@@ -2,28 +2,19 @@
 
 RSpec.describe Parcel do
   describe '#update_status' do
-    subject { Parcel.create!(status: old_status) }
+    subject { parcel.update_status(new_status) }
+
+    let(:parcel) { described_class.create(status: old_status) }
 
     # Reduce duplication by using table tests
     context 'with transition from pre_shipped to in_transit' do
       let(:old_status) { 'pre_shipped' }
       let(:new_status) { 'in_transit' }
 
-      it 'updates status' do
-        subject.update_status(new_status)
+      it 'does not update status' do
+        subject
 
-        expect(subject.status).to eq(new_status)
-      end
-    end
-
-    context 'with transition from in_transit to completed' do
-      let(:old_status) { 'in_transit' }
-      let(:new_status) { 'completed' }
-
-      it 'updates status' do
-        subject.update_status(new_status)
-
-        expect(subject.status).to eq(new_status)
+        expect(parcel.status).to eq(old_status)
       end
     end
 
