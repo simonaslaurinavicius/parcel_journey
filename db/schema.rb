@@ -10,11 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_23_183454) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_183945) do
   create_table "parcels", force: :cascade do |t|
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recipient_id", null: false
+    t.integer "sender_id", null: false
+    t.index ["recipient_id"], name: "index_parcels_on_recipient_id"
+    t.index ["sender_id"], name: "index_parcels_on_sender_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -24,4 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_183454) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "parcels", "people", column: "recipient_id"
+  add_foreign_key "parcels", "people", column: "sender_id"
 end
