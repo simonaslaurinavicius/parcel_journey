@@ -6,7 +6,7 @@ RSpec.describe Parcel do
 
     # Refactor valid transition test cases using subject, context and let variables
     it 'updates status from pre_shipped to in_transit' do
-      parcel = Parcel.create(status: 'pre_shipped')
+      parcel = Parcel.create!(status: 'pre_shipped')
 
       parcel.update_status('in_transit')
 
@@ -14,7 +14,7 @@ RSpec.describe Parcel do
     end
 
     it 'updates status from in_transit to completed' do
-      parcel = Parcel.create(status: 'in_transit')
+      parcel = Parcel.create!(status: 'in_transit')
 
       parcel.update_status('completed')
 
@@ -23,7 +23,7 @@ RSpec.describe Parcel do
 
     # Refactor invalid transition test cases using subject, context and let variables
     it 'does not update status from pre_shipped to completed' do
-      parcel = Parcel.create(status: 'pre_shipped')
+      parcel = Parcel.create!(status: 'pre_shipped')
 
       parcel.update_status('completed')
 
@@ -31,7 +31,7 @@ RSpec.describe Parcel do
     end
 
     it 'does not update status from completed to in_transit' do
-      parcel = Parcel.create(status: 'completed')
+      parcel = Parcel.create!(status: 'completed')
 
       parcel.update_status('in_transit')
 
@@ -39,7 +39,7 @@ RSpec.describe Parcel do
     end
 
     it 'does not update status from completed to pre_shipped' do
-      parcel = Parcel.create(status: 'completed')
+      parcel = Parcel.create!(status: 'completed')
 
       parcel.update_status('pre_shipped')
 
@@ -47,7 +47,7 @@ RSpec.describe Parcel do
     end
 
     it 'does not update status from in_transit to pre_shipped' do
-      parcel = Parcel.create(status: 'in_transit')
+      parcel = Parcel.create!(status: 'in_transit')
 
       parcel.update_status('pre_shipped')
 
