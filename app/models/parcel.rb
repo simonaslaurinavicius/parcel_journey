@@ -7,6 +7,9 @@ class Parcel < ApplicationRecord
     completed: 'completed',
   }
 
+  belongs_to :sender, class_name: 'Person', foreign_key: 'sender_id'
+  belongs_to :recipient, class_name: 'Person', foreign_key: 'recipient_id'
+
   HAPPY_PATH = {
     'pre_shipped' => 'in_transit',
     'in_transit' => 'completed',
