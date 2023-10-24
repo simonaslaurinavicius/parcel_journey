@@ -4,7 +4,7 @@ RSpec.describe Parcel do
   describe '#update_status' do
     subject { parcel.update_status(new_status) }
 
-    let(:parcel) { Parcel.create(status: old_status) }
+    let(:parcel) { Parcel.create!(status: old_status) }
 
     {
       %w(pre_shipped in_transit) => 'in_transit',
