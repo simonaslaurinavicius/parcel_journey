@@ -31,7 +31,10 @@ RSpec.describe Parcel do
         let(:new_status) { transition.last }
 
         it 'does not update status' do
-          # Insert your code here
+          expect(Rails.logger)
+            .to receive(:error)
+            .with("Illegal transition from #{old_status} to #{new_status}!")
+
           subject.update_status(new_status)
 
           expect(subject.status).to eq(expected_status)
