@@ -2,9 +2,7 @@
 
 RSpec.describe Parcel do
   describe '#update_status' do
-    subject { parcel.update_status(new_status) }
-
-    let(:parcel) { Parcel.create!(status: old_status) }
+    subject { Parcel.create!(status: old_status) }
 
     {
       %w(pre_shipped in_transit) => 'in_transit',
@@ -15,9 +13,9 @@ RSpec.describe Parcel do
         let(:new_status) { transition.last }
 
         it 'updates status' do
-          subject
+          subject.update_status(new_status)
 
-          expect(parcel.status).to eq(expected_status)
+          expect(subject.status).to eq(expected_status)
         end
       end
     end
@@ -34,9 +32,9 @@ RSpec.describe Parcel do
 
         it 'does not update status' do
           # Insert your code here
-          subject
+          subject.update_status(new_status)
 
-          expect(parcel.status).to eq(expected_status)
+          expect(subject.status).to eq(expected_status)
         end
       end
     end
