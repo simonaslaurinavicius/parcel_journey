@@ -8,7 +8,7 @@ RSpec.describe Parcel do
     {
       %w(pre_shipped in_transit) => 'in_transit',
       %w(in_transit completed) => 'completed',
-    }.each do |transition, _expected_status|
+    }.each do |transition, expected_status|
       context "with valid transition from #{transition.first} to #{transition.last}" do
         let(:old_status) { transition.first }
         let(:new_status) { transition.last }
