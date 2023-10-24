@@ -2,9 +2,7 @@
 
 RSpec.describe Parcel do
   describe '#update_status' do
-    subject { parcel.update_status(new_status) }
-
-    let(:parcel) { Parcel.create!(status: old_status) }
+    subject { Parcel.create!(status: old_status) }
 
     # Reduce duplication by using table tests
     context 'with transition from pre_shipped to in_transit' do
@@ -12,9 +10,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'in_transit' }
 
       it 'updates status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(new_status)
+        expect(subject.status).to eq(new_status)
       end
     end
 
@@ -23,9 +21,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'completed' }
 
       it 'updates status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(new_status)
+        expect(subject.status).to eq(new_status)
       end
     end
 
@@ -34,9 +32,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'completed' }
 
       it 'does not update status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(old_status)
+        expect(subject.status).to eq(old_status)
       end
     end
 
@@ -45,9 +43,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'in_transit' }
 
       it 'does not update status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(old_status)
+        expect(subject.status).to eq(old_status)
       end
     end
 
@@ -56,9 +54,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'pre_shipped' }
 
       it 'does not update status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(old_status)
+        expect(subject.status).to eq(old_status)
       end
     end
 
@@ -67,9 +65,9 @@ RSpec.describe Parcel do
       let(:new_status) { 'pre_shipped' }
 
       it 'does not update status' do
-        subject
+        subject.update_status(new_status)
 
-        expect(parcel.status).to eq(old_status)
+        expect(subject.status).to eq(old_status)
       end
     end
   end
