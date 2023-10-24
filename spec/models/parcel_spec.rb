@@ -2,6 +2,7 @@
 
 RSpec.describe Parcel do
   describe '#update_status' do
+    # Use factory bot to build the subject
     subject { Parcel.create!(status: old_status) }
 
     {
