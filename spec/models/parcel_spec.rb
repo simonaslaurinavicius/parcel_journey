@@ -2,8 +2,7 @@
 
 RSpec.describe Parcel do
   describe '#update_status' do
-    # Use factory bot to build the subject
-    subject { Parcel.create!(status: old_status) }
+    subject { create(:parcel, status: old_status) }
 
     {
       %w(pre_shipped in_transit) => 'in_transit',
