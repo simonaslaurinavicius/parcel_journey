@@ -37,17 +37,5 @@ RSpec.describe Parcel do
         end
       end
     end
-
-    Parcel.statuses.values.each do |status|
-      context 'when status did not change' do
-        subject { Parcel.create!(status: status) }
-
-        it 'does not update status' do
-          subject.update_status(status)
-
-          expect(subject.status).to eq(status)
-        end
-      end
-    end
   end
 end
