@@ -1,6 +1,6 @@
 inherit_gem:
-  rubocop-vinted:
-    - .rubocop.default.yml
+  vinted-rubocop:
+    - .rubocop.yml
 
 Naming/AccessorMethodName:
   Enabled: false
