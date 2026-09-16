@@ -45,7 +45,7 @@ end
 
 group :development do
   gem 'rubocop', '>= 1.49.0', require: false
-  gem 'rubocop-vinted', '~> 1.3.0', require: false, source: private_gem_source
+  gem 'vinted-rubocop', '~> 1.9.0', require: false, source: private_gem_source
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
